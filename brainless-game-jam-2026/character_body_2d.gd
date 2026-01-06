@@ -34,8 +34,11 @@ func _physics_process(delta: float) -> void:
 	var vlen: float = velocity.length()
 	if vlen > max_speed:
 		velocity = velocity / vlen * max_speed
-
-	move_and_slide()
+		
+	# Bounce!
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
 
 func _apply_drag_shot() -> void:
 	var pull: Vector2 = drag_current - drag_start
