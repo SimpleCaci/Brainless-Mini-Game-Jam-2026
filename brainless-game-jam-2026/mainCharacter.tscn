@@ -6,25 +6,33 @@
 [ext_resource type="Script" uid="uid://bwxsoybk7hm43" path="res://point_light_2d.gd" id="4_1i7ck"]
 [ext_resource type="Texture2D" uid="uid://db0bdo4pk6tp5" path="res://icon.svg" id="5_e5x6o"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1q6hs"]
-radius = 6.91229
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1q6hs"]
+custom_solver_bias = 0.325
+radius = 11.123109
+height = 29.805613
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(1, 0.79)
 script = ExtResource("1_1q6hs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(9.26, 9.26)
-shape = SubResource("CircleShape2D_1q6hs")
+rotation = 1.5707964
+scale = Vector2(1, 0.79)
+shape = SubResource("CapsuleShape2D_1q6hs")
 script = ExtResource("2_hswio")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 0.79)
 script = ExtResource("3_qut2a")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1, 0.79)
 script = ExtResource("4_1i7ck")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1, 0.79)
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(6.499998, -6.374996)
+scale = Vector2(1, 0.79)
 texture = ExtResource("5_e5x6o")
