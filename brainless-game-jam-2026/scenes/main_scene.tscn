@@ -1,0 +1,143 @@
+[gd_scene load_steps=7 format=3 uid="uid://28h8gmyru2pi"]
+
+[ext_resource type="PackedScene" uid="uid://crfvanc1yp3nv" path="res://scenes/map.tscn" id="1_pw63i"]
+[ext_resource type="PackedScene" uid="uid://cedlx8xy2452q" path="res://scenes/sheep.tscn" id="3_7ykc4"]
+[ext_resource type="PackedScene" uid="uid://cpdqnjgl2x1q5" path="res://scenes/dog.tscn" id="3_gubc5"]
+[ext_resource type="PackedScene" uid="uid://cmsl1j5ejkhtx" path="res://scenes/goal.tscn" id="4_pu3yx"]
+
+[sub_resource type="GDScript" id="GDScript_pu3yx"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_d5x1h"]
+script/source = "extends CanvasLayer
+
+@export var ball_path: NodePath
+
+@onready var strokes_label: Label = $StrokesLabel
+@onready var speed_label: Label = $SpeedLabel
+
+var ball: Node = null
+
+func _ready() -> void:
+	call_deferred(\"_bind_ball\")
+
+func _bind_ball() -> void:
+	if ball_path == NodePath(\"\") or ball_path.is_empty():
+		push_error(\"HUD: ball_path is empty. Set HUD.ball_path to the Ball node in the Inspector.\")
+		return
+
+	ball = get_node_or_null(ball_path)
+	if ball == null:
+		push_error(\"HUD: ball_path does not resolve. Current ball_path: %s\" % str(ball_path))
+		return
+
+	# Optional: verify signals exist (prevents silent mismatch)
+	if not ball.has_signal(\"shot_taken\"):
+		push_error(\"HUD: Ball node has no signal 'shot_taken'. Did you attach the correct Ball script?\")
+		return
+	if not ball.has_signal(\"speed_changed\"):
+		push_error(\"HUD: Ball node has no signal 'speed_changed'. Did you attach the correct Ball script?\")
+		return
+
+	ball.connect(\"shot_taken\", Callable(self, \"_on_shot_taken\"))
+	ball.connect(\"speed_changed\", Callable(self, \"_on_speed_changed\"))
+
+func _on_shot_taken(strokes: int) -> void:
+	strokes_label.text = \"Strokes: %d\" % strokes
+
+func _on_speed_changed(speed: float) -> void:
+	speed_label.text = \"Speed: %d\" % int(speed)
+"
+
+[node name="Main Scene" type="Node2D"]
+script = SubResource("GDScript_pu3yx")
+
+[node name="map" parent="." instance=ExtResource("1_pw63i")]
+
+[node name="Parallax2D" parent="map" index="0"]
+scroll_offset = Vector2(0.2, 0.2)
+autoscroll = Vector2(30, 30)
+repeat_times = 3
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+z_as_relative = false
+
+[node name="dog" parent="." instance=ExtResource("3_gubc5")]
+position = Vector2(168, 169)
+
+[node name="Popup" type="Popup" parent="dog"]
+oversampling_override = 1.0
+mode = 2
+title = "MENU SCREEN"
+size = Vector2i(2999, 2999)
+visible = true
+unresizable = false
+borderless = false
+always_on_top = true
+exclude_from_capture = true
+min_size = Vector2i(2999, 2999)
+keep_title_visible = true
+content_scale_factor = 0.5
+
+[node name="TextEdit" type="TextEdit" parent="dog/Popup"]
+custom_minimum_size = Vector2(300, 3000)
+offset_right = 1624.0
+offset_bottom = 288.0
+text = "YOU WIN!"
+placeholder_text = "YOU WIN!"
+minimap_width = 23525
+caret_blink_interval = 1.85
+text_direction = 2
+
+[node name="sheep3" parent="." instance=ExtResource("3_7ykc4")]
+position = Vector2(601, 363)
+
+[node name="sheep2" parent="." instance=ExtResource("3_7ykc4")]
+position = Vector2(651, 161.00002)
+
+[node name="sheep" parent="." instance=ExtResource("3_7ykc4")]
+position = Vector2(441, 162.00002)
+
+[node name="goal" parent="." instance=ExtResource("4_pu3yx")]
+position = Vector2(902, 508)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = SubResource("GDScript_d5x1h")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = -17.0
+offset_top = -55.0
+offset_right = 23.0
+offset_bottom = -32.0
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = -32.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = 12.0
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+offset_left = -25.0
+offset_top = -10.0
+offset_right = 15.0
+offset_bottom = 13.0
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = -39.0
+offset_top = -18.0
+offset_right = -31.0
+offset_bottom = -10.0
+
+[editable path="map"]

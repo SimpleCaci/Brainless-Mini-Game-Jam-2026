@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cedlx8xy2452q"]
+
+[ext_resource type="Script" uid="uid://dlyal8b0qw5e0" path="res://scenes/sheep.gd" id="1_6qn06"]
+[ext_resource type="Texture2D" uid="uid://du2frt68smoiy" path="res://assets/sheep/sheep2_run.png" id="1_gw4f6"]
+[ext_resource type="Texture2D" uid="uid://caxpgjecms735" path="res://assets/sheep/sheep2_stand.png" id="2_6qn06"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gw4f6"]
+friction = 0.2
+bounce = 0.6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gw4f6"]
+radius = 32.140316
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55m3e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gw4f6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6qn06")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="sheep" type="RigidBody2D"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_gw4f6")
+gravity_scale = 0.0
+freeze_mode = 1
+linear_damp = 0.1
+script = ExtResource("1_6qn06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gw4f6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_55m3e")
+autoplay = "default"
+frame_progress = 0.6081188
