@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cedlx8xy2452q"]
+[gd_scene load_steps=8 format=3 uid="uid://cedlx8xy2452q"]
 
 [ext_resource type="Script" uid="uid://dlyal8b0qw5e0" path="res://scripts/sheep.gd" id="1_6qn06"]
-[ext_resource type="Texture2D" uid="uid://du2frt68smoiy" path="res://assets/sheep/sheep2_run.png" id="1_gw4f6"]
-[ext_resource type="Texture2D" uid="uid://caxpgjecms735" path="res://assets/sheep/sheep2_stand.png" id="2_6qn06"]
+[ext_resource type="Texture2D" uid="uid://du2frt68smoiy" path="res://assets/sheep/run/sheep2_run.png" id="1_gw4f6"]
+[ext_resource type="Texture2D" uid="uid://caxpgjecms735" path="res://assets/sheep/run/sheep2_stand.png" id="2_6qn06"]
+[ext_resource type="Texture2D" uid="uid://ku1uq5lawgwr" path="res://assets/sheep/idle/sheep1_stand.png" id="2_n54i3"]
+[ext_resource type="Texture2D" uid="uid://b1a8iv35hkgnq" path="res://assets/sheep/idle/sheep2_stand.png" id="3_vrdyb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gw4f6"]
 radius = 32.140316
@@ -11,13 +13,24 @@ radius = 32.140316
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_n54i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vrdyb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_gw4f6")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_6qn06")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -29,5 +42,5 @@ shape = SubResource("CircleShape2D_gw4f6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_55m3e")
-autoplay = "default"
-frame_progress = 0.53793305
+animation = &"run"
+autoplay = "run"

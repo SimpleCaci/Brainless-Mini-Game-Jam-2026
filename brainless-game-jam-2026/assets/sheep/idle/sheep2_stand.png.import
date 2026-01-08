@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caxpgjecms735"
-path="res://.godot/imported/sheep2_stand.png-59ca0d15100104c1db2b07e2eca6d446.ctex"
+uid="uid://b1a8iv35hkgnq"
+path="res://.godot/imported/sheep2_stand.png-796c2f4999244e33ae80edb930a723fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sheep/sheep2_stand.png"
-dest_files=["res://.godot/imported/sheep2_stand.png-59ca0d15100104c1db2b07e2eca6d446.ctex"]
+source_file="res://assets/sheep/idle/sheep2_stand.png"
+dest_files=["res://.godot/imported/sheep2_stand.png-796c2f4999244e33ae80edb930a723fd.ctex"]
 
 [params]
 

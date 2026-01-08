@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpdqnjgl2x1q5"]
+[gd_scene load_steps=15 format=3 uid="uid://cpdqnjgl2x1q5"]
 
 [ext_resource type="Script" uid="uid://4gqvxtkttnpv" path="res://scripts/dog.gd" id="1_1q6hs"]
+[ext_resource type="Texture2D" uid="uid://b011mhdepcgws" path="res://assets/dog/idle/maple_sit.png" id="2_laypt"]
 [ext_resource type="Texture2D" uid="uid://cc0dbqsmkvpdn" path="res://assets/dog/walk/maple_walk_1.png" id="3_e5x6o"]
+[ext_resource type="Texture2D" uid="uid://hxiiv5p86eaf" path="res://assets/dog/idle/maple_stand.png" id="3_ei5el"]
 [ext_resource type="Texture2D" uid="uid://0rb1fc6mo3vc" path="res://assets/dog/walk/maple_walk_2.png" id="4_n5i3d"]
 [ext_resource type="Texture2D" uid="uid://t0sfrxp2aq2n" path="res://assets/dog/walk/maple_walk_3.png" id="5_2tjg7"]
 [ext_resource type="Texture2D" uid="uid://db0bdo4pk6tp5" path="res://assets/icon.svg" id="5_e5x6o"]
@@ -34,6 +36,17 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_laypt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ei5el")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -102,9 +115,8 @@ script = SubResource("GDScript_hswio")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -10.126586)
 sprite_frames = SubResource("SpriteFrames_hmlq1")
-animation = &"walk"
-autoplay = "walk"
-frame_progress = 0.9394672
+animation = &"idle"
+autoplay = "idle"
 flip_h = true
 script = SubResource("GDScript_qut2a")
 
