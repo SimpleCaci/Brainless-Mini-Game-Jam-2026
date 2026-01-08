@@ -60,6 +60,7 @@ func arrived_at_goal() -> void:
 	max_speed = 10000000.0
 	friction = -5
 	$Popup.popup()
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
 func _physics_process(delta: float) -> void:
 	rotation = 0.0

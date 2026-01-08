@@ -6,18 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cmsl1j5ejkhtx" path="res://scenes/goal.tscn" id="4_pu3yx"]
 
 [sub_resource type="GDScript" id="GDScript_pu3yx"]
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
 
 [sub_resource type="GDScript" id="GDScript_d5x1h"]
 script/source = "extends CanvasLayer
@@ -60,7 +48,9 @@ func _on_speed_changed(speed: float) -> void:
 	speed_label.text = \"Speed: %d\" % int(speed)
 "
 
-[node name="Main Scene" type="Node2D"]
+[node name="Main Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = SubResource("GDScript_pu3yx")
 
 [node name="map" parent="." instance=ExtResource("1_pw63i")]
@@ -80,6 +70,7 @@ position = Vector2(168, 169)
 oversampling_override = 1.0
 mode = 2
 title = "MENU SCREEN"
+position = Vector2i(0, 36)
 size = Vector2i(2999, 2999)
 visible = true
 unresizable = false

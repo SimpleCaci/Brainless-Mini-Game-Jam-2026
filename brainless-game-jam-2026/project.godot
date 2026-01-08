@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Brainless Game Jam 2026"
-run/main_scene="uid://28h8gmyru2pi"
+run/main_scene="uid://dnxk5nam62qyi"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/icon.svg"
 
