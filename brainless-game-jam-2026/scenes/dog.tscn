@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dlj1gbq5ic16l" path="res://assets/dog/walk/maple_walk_4.png" id="6_2tmqr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iaoh4"]
-size = Vector2(79.25, 73.06962)
+size = Vector2(93.625, 117.63449)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1q6hs"]
 custom_solver_bias = 0.325

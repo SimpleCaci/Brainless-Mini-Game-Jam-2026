@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal shot_taken(strokes: int)
 signal speed_changed(speed: float)
 
-@export var max_speed: float = 18000.0
+@export var max_speed: float = 2000.0
 @export var friction: float = 1000.0
 @export var max_pull: float = 250.0
 @export var impulse_per_px: float = 8.0
@@ -14,6 +14,7 @@ signal speed_changed(speed: float)
 
 # Trail pickup (requires a child Area2D named PickupArea with a CollisionShape2D)
 @export var max_followers: int = 30
+@export var followers_to_win: int = 4
 
 @onready var spr: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -56,11 +57,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		drag_current = get_global_mouse_position()
 		queue_redraw()
 		
-func arrived_at_goal() -> void:
-	max_speed = 10000000.0
-	friction = -5
-	$Popup.popup()
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+func arrived_at_goal() -> void: #win
+	if followers.size() >= followers_to_win:
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
 func _physics_process(delta: float) -> void:
 	rotation = 0.0
