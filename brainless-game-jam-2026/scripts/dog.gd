@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 signal shot_taken(strokes: int)
 signal speed_changed(speed: float)
+signal win_changed(win: bool)
 
-@export var max_speed: float = 2000.0
+@export var max_speed: float = 1000.0
 @export var friction: float = 1000.0
 @export var max_pull: float = 250.0
 @export var impulse_per_px: float = 8.0
@@ -18,6 +19,7 @@ signal speed_changed(speed: float)
 
 @onready var spr: AnimatedSprite2D = $AnimatedSprite2D
 
+var win: bool = false
 var dragging: bool = false
 var drag_current: Vector2 = Vector2.ZERO
 var strokes: int = 0
@@ -59,10 +61,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func arrived_at_goal() -> void: #win
 	if followers.size() >= followers_to_win:
+		
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	
 func _physics_process(delta: float) -> void:
 	rotation = 0.0
+	
 
 	# friction
 	var speed: float = velocity.length()
@@ -90,14 +94,26 @@ func _physics_process(delta: float) -> void:
 	spr.flip_h = last_face_right
 
 	if moving:
+		$AnimatedSprite2D.set_animation("run")
+		
 		# during motion: follow trajectory (no clamp)
 		var aim: float = atan2(velocity.y, abs(velocity.x))
 		spr.rotation = lerp_angle(spr.rotation, aim, 1.0 - exp(-turn_speed * delta))
 	else:
+		$AnimatedSprite2D.set_animation("idle")
+		
 		# when stopped: clamp + return to clean pose
 		var diff: float = wrapf(spr.rotation, -PI, PI)
 		diff = clamp(diff, -deg_to_rad(max_tilt_deg), deg_to_rad(max_tilt_deg))
 		spr.rotation = lerp_angle(spr.rotation, diff, 1.0 - exp(-return_speed * delta))
+
+	speed_changed.emit(velocity.length())
+	
+		# win state (emit only on change)
+	var new_win := followers.size() >= followers_to_win
+	if new_win != win:
+		win = new_win
+		win_changed.emit(win)
 
 	speed_changed.emit(velocity.length())
 

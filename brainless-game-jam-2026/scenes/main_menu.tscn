@@ -1,11 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnxk5nam62qyi"]
+[gd_scene load_steps=16 format=3 uid="uid://dnxk5nam62qyi"]
 
-[ext_resource type="Script" uid="uid://bspmcl7flvgoy" path="res://scenes/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://bspmcl7flvgoy" path="res://main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://cxcm2o8m8d4mb" path="res://assets/Screenshot 2026-01-08 011403.png" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://5p1xswdgu8s8" path="res://assets/stuff/Start/start.png" id="3_8ln24"]
+[ext_resource type="Texture2D" uid="uid://crnrpx341jchi" path="res://assets/stuff/Start/option.png" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://dr4f5n7vayl53" path="res://assets/stuff/Start/escape3.png" id="5_oa1go"]
+[ext_resource type="Texture2D" uid="uid://f75eobqw7rsb" path="res://assets/stuff/Start/title_1.png" id="6_oa1go"]
+[ext_resource type="Texture2D" uid="uid://bo08jw1vlo0yw" path="res://assets/stuff/Start/title_2.png" id="7_tbmy8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
 texture = ExtResource("2_bqqt6")
 modulate_color = Color(0.33367163, 0.33367163, 0.33367163, 0.32941177)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tbmy8"]
+texture = ExtResource("3_8ln24")
+region_rect = Rect2(17.2919, 23.556782, 55.13269, 18.236195)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ln24"]
+texture = ExtResource("3_8ln24")
+region_rect = Rect2(17, 24, 56, 18)
+modulate_color = Color(2.8123996, 2.8123996, 2.8123996, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jk1qb"]
+texture = ExtResource("4_rtw2f")
+region_rect = Rect2(16.94013, 23.799757, 56.304634, 18.406965)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtw2f"]
+texture = ExtResource("4_rtw2f")
+region_rect = Rect2(17, 24, 56, 18)
+modulate_color = Color(2.812, 2.812, 2.812, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5dd4i"]
+texture = ExtResource("5_oa1go")
+region_rect = Rect2(16.964876, 23.764194, 56.13295, 18.41383)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa1go"]
+texture = ExtResource("5_oa1go")
+region_rect = Rect2(17, 24, 56, 18)
+modulate_color = Color(2.92, 2.92, 2.92, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jk1qb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_oa1go")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tbmy8")
+}],
+"loop": true,
+"name": &"Title",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,56 +79,55 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -164.5
-offset_top = -139.0
-offset_right = 164.5
-offset_bottom = 139.0
+offset_left = -162.0
+offset_top = 9.0
+offset_right = 167.0
+offset_bottom = 383.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="startButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.0093103545, 0.0093103545, 0.0021230865, 1)
-theme_override_colors/font_focus_color = Color(0.9490196, 0.5254902, 0, 1)
-theme_override_colors/icon_hover_color = Color(1, 0, 1, 1)
-theme_override_font_sizes/font_size = 59
-text = "Options"
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_tbmy8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8ln24")
+text = "
+
+"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.0093103545, 0.0093103545, 0.0021230865, 1)
-theme_override_colors/font_focus_color = Color(0.9490196, 0.5254902, 0, 1)
-theme_override_colors/icon_hover_color = Color(1, 0, 1, 1)
-theme_override_font_sizes/font_size = 59
-text = "Start Game"
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rtw2f")
+text = " 
+
+"
 
 [node name="Button3" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.0093103545, 0.0093103545, 0.0021230865, 1)
-theme_override_colors/font_focus_color = Color(0.9490196, 0.5254902, 0, 1)
-theme_override_colors/icon_hover_color = Color(1, 0, 1, 1)
-theme_override_font_sizes/font_size = 59
-text = "Exit"
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_5dd4i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_oa1go")
+text = "
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -302.5
-offset_top = 8.0
-offset_right = 302.5
-offset_bottom = 171.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 100
-text = "The Sheperd"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
+"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(672, 130)
+scale = Vector2(5.558511, 3.904908)
+sprite_frames = SubResource("SpriteFrames_jk1qb")
+animation = &"Title"
+autoplay = "Title"
+frame_progress = 0.31718457
+
+[connection signal="pressed" from="VBoxContainer/startButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]

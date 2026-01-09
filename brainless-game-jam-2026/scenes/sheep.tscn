@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cedlx8xy2452q"]
+[gd_scene load_steps=9 format=3 uid="uid://cedlx8xy2452q"]
 
 [ext_resource type="Script" uid="uid://dlyal8b0qw5e0" path="res://scripts/sheep.gd" id="1_6qn06"]
 [ext_resource type="Texture2D" uid="uid://du2frt68smoiy" path="res://assets/sheep/run/sheep2_run.png" id="1_gw4f6"]
 [ext_resource type="Texture2D" uid="uid://caxpgjecms735" path="res://assets/sheep/run/sheep2_stand.png" id="2_6qn06"]
-[ext_resource type="Texture2D" uid="uid://ku1uq5lawgwr" path="res://assets/sheep/idle/sheep1_stand.png" id="2_n54i3"]
-[ext_resource type="Texture2D" uid="uid://b1a8iv35hkgnq" path="res://assets/sheep/idle/sheep2_stand.png" id="3_vrdyb"]
+[ext_resource type="Texture2D" uid="uid://3b8v2jf70ni2" path="res://assets/sheep/idle/sheepidle_1.png" id="2_vrdyb"]
+[ext_resource type="Texture2D" uid="uid://dj312rpy5lnch" path="res://assets/sheep/idle/sheepidle_2.png" id="3_vbo3h"]
+[ext_resource type="Texture2D" uid="uid://wbgdru18iyyp" path="res://assets/sheep/idle/sheepidle_3.png" id="4_5g05w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gw4f6"]
 radius = 32.140316
@@ -13,10 +14,13 @@ radius = 32.140316
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_n54i3")
+"texture": ExtResource("2_vrdyb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_vrdyb")
+"texture": ExtResource("3_vbo3h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5g05w")
 }],
 "loop": true,
 "name": &"idle",
@@ -39,8 +43,10 @@ script = ExtResource("1_6qn06")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_gw4f6")
+one_way_collision = true
+one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_55m3e")
-animation = &"run"
-autoplay = "run"
+animation = &"idle"
+autoplay = "idle"
