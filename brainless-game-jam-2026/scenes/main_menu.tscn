@@ -1,29 +1,34 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnxk5nam62qyi"]
+[gd_scene load_steps=18 format=3 uid="uid://dnxk5nam62qyi"]
 
 [ext_resource type="Script" uid="uid://bspmcl7flvgoy" path="res://main_menu.gd" id="1_ekxnf"]
-[ext_resource type="Texture2D" uid="uid://cxcm2o8m8d4mb" path="res://assets/Screenshot 2026-01-08 011403.png" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://t0nawrbsu7w6" path="res://assets/stuff/Start/bg.png" id="2_oa1go"]
 [ext_resource type="Texture2D" uid="uid://5p1xswdgu8s8" path="res://assets/stuff/Start/start.png" id="3_8ln24"]
 [ext_resource type="Texture2D" uid="uid://crnrpx341jchi" path="res://assets/stuff/Start/option.png" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://dr4f5n7vayl53" path="res://assets/stuff/Start/escape3.png" id="5_oa1go"]
 [ext_resource type="Texture2D" uid="uid://f75eobqw7rsb" path="res://assets/stuff/Start/title_1.png" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://bo08jw1vlo0yw" path="res://assets/stuff/Start/title_2.png" id="7_tbmy8"]
+[ext_resource type="AudioStream" uid="uid://cr2osbasontvt" path="res://audio/background.wav" id="8_tbmy8"]
+[ext_resource type="AudioStream" uid="uid://bt35okvd0an7h" path="res://audio/click.wav" id="9_jk1qb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
-texture = ExtResource("2_bqqt6")
-modulate_color = Color(0.33367163, 0.33367163, 0.33367163, 0.32941177)
+texture = ExtResource("2_oa1go")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tbmy8"]
 texture = ExtResource("3_8ln24")
 region_rect = Rect2(17.2919, 23.556782, 55.13269, 18.236195)
+modulate_color = Color(2.28, 2.234, 2.105, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ln24"]
 texture = ExtResource("3_8ln24")
+expand_margin_left = 1.0
+expand_margin_right = 1.0
 region_rect = Rect2(17, 24, 56, 18)
 modulate_color = Color(2.8123996, 2.8123996, 2.8123996, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jk1qb"]
 texture = ExtResource("4_rtw2f")
 region_rect = Rect2(16.94013, 23.799757, 56.304634, 18.406965)
+modulate_color = Color(2.28, 2.234, 2.105, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtw2f"]
 texture = ExtResource("4_rtw2f")
@@ -33,6 +38,7 @@ modulate_color = Color(2.812, 2.812, 2.812, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5dd4i"]
 texture = ExtResource("5_oa1go")
 region_rect = Rect2(16.964876, 23.764194, 56.13295, 18.41383)
+modulate_color = Color(2.28, 2.234, 2.105, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa1go"]
 texture = ExtResource("5_oa1go")
@@ -72,7 +78,7 @@ offset_right = 1146.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_wu84c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ui_buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,7 +92,7 @@ offset_bottom = 383.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="startButton" type="Button" parent="VBoxContainer"]
+[node name="startButton" type="Button" parent="ui_buttons"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
@@ -97,7 +103,7 @@ text = "
 
 "
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Button2" type="Button" parent="ui_buttons"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
@@ -108,7 +114,7 @@ text = "
 
 "
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Button3" type="Button" parent="ui_buttons"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
@@ -128,6 +134,30 @@ animation = &"Title"
 autoplay = "Title"
 frame_progress = 0.31718457
 
-[connection signal="pressed" from="VBoxContainer/startButton" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -22.0
+offset_right = 311.0
+offset_bottom = 1.0
+grow_vertical = 0
+text = "Programmed By SimpleCaci | Art by Pia"
+
+[node name="bgSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_tbmy8")
+autoplay = true
+
+[node name="hoverSFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(414, 333)
+stream = ExtResource("9_jk1qb")
+
+[node name="clickSFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(414, 333)
+stream = ExtResource("9_jk1qb")
+
+[connection signal="pressed" from="ui_buttons/startButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ui_buttons/Button2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="ui_buttons/Button3" to="." method="_on_exit_pressed"]

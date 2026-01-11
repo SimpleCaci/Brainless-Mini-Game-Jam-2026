@@ -1,26 +1,24 @@
 extends Control
 
+@onready var hover_sfx: AudioStreamPlayer2D = $hoverSFX
+@onready var click_sfx: AudioStreamPlayer2D = $clickSFX
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _ready() -> void:
+	for butt in get_tree().get_nodes_in_group("ui_buttons"):
+		if butt is BaseButton:
+			butt.mouse_entered.connect(Callable(self, "_on_hover"))
+			butt.pressed.connect(Callable(self, "_on_click"))
 
+func _on_hover() -> void:
+	hover_sfx.stop()
+	hover_sfx.play()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_click() -> void:
+	click_sfx.stop()
+	click_sfx.play()
 
-
-	
-func _on_settings_pressed():
-	pass # Replace with function body.
-
-
-func _on_exit_pressed():
+func _on_exit_pressed() -> void:
 	get_tree().quit()
-	pass # Replace with function body.
 
-
-func _on_start_pressed():
+func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_scene.tscn")
-	pass # Replace with function body.

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://df4ifvsh0rubb"]
+
+[ext_resource type="Texture2D" uid="uid://cbffht4t8gei5" path="res://assets/compass/COMPASSbase.png" id="1_bgjyk"]
+[ext_resource type="Script" uid="uid://bdaapmqmakapg" path="res://scenes/compass_arrow.gd" id="2_8a3he"]
+[ext_resource type="Texture2D" uid="uid://bm86muwdsnfix" path="res://assets/compass/COMPASSarrow.png" id="2_vggt3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2pv4q"]
+radius = 66.8
+
+[node name="Compass" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2pv4q")
+
+[node name="Compass Base" type="Sprite2D" parent="."]
+position = Vector2(3, 1)
+texture = ExtResource("1_bgjyk")
+
+[node name="CompassArrow" type="Node2D" parent="."]
+script = ExtResource("2_8a3he")
+
+[node name="CompasSarrow" type="Sprite2D" parent="CompassArrow"]
+position = Vector2(3, 0)
+texture = ExtResource("2_vggt3")

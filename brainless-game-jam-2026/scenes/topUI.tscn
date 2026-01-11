@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://mkaevujwhsf3"]
+[gd_scene load_steps=3 format=3 uid="uid://mkaevujwhsf3"]
+
+[ext_resource type="PackedScene" uid="uid://df4ifvsh0rubb" path="res://scenes/compass.tscn" id="1_qgj0o"]
 
 [sub_resource type="GDScript" id="GDScript_d5x1h"]
 script/source = "extends CanvasLayer
@@ -91,3 +93,6 @@ offset_left = -8.0
 offset_bottom = 8.0
 grow_horizontal = 0
 text = "button"
+
+[node name="Compass" parent="." instance=ExtResource("1_qgj0o")]
+position = Vector2(82, 84)

@@ -62,7 +62,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func arrived_at_goal() -> void: #win
 	if followers.size() >= followers_to_win:
 		
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/win.tscn")
 	
 func _physics_process(delta: float) -> void:
 	rotation = 0.0
@@ -118,6 +118,7 @@ func _physics_process(delta: float) -> void:
 	speed_changed.emit(velocity.length())
 
 func _shoot() -> bool:
+	$AudioStreamPlayer2D.play()
 	var pull: Vector2 = drag_current - global_position
 	var pull_len: float = min(pull.length(), max_pull)
 	if pull_len <= 0.0:
