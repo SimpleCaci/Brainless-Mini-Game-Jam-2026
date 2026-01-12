@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=3 uid="uid://cpdqnjgl2x1q5"]
+
+[ext_resource type="Script" uid="uid://4gqvxtkttnpv" path="res://scripts/dog.gd" id="1_1q6hs"]
+[ext_resource type="Texture2D" uid="uid://c77fbv38cqdeg" path="res://assets/dog/idle/mapleidle_1.png" id="2_ei5el"]
+[ext_resource type="Texture2D" uid="uid://cc0dbqsmkvpdn" path="res://assets/dog/run/maple_walk_1.png" id="3_e5x6o"]
+[ext_resource type="Texture2D" uid="uid://btewk4m7vknf1" path="res://assets/dog/idle/mapleidle_2.png" id="3_jlmqp"]
+[ext_resource type="Texture2D" uid="uid://0rb1fc6mo3vc" path="res://assets/dog/run/maple_walk_2.png" id="4_n5i3d"]
+[ext_resource type="Texture2D" uid="uid://cfobd2jvcj0pi" path="res://assets/dog/idle/mapleidle_3.png" id="4_v3i3p"]
+[ext_resource type="Texture2D" uid="uid://t0sfrxp2aq2n" path="res://assets/dog/run/maple_walk_3.png" id="5_2tjg7"]
+[ext_resource type="Texture2D" uid="uid://db0bdo4pk6tp5" path="res://assets/icon.svg" id="5_e5x6o"]
+[ext_resource type="Texture2D" uid="uid://dlj1gbq5ic16l" path="res://assets/dog/run/maple_walk_4.png" id="6_2tmqr"]
+[ext_resource type="AudioStream" uid="uid://os3jaw6sxuee" path="res://audio/powerUp.wav" id="10_jlmqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iaoh4"]
+size = Vector2(147, 150.63292)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1q6hs"]
+custom_solver_bias = 0.325
+radius = 15.189873
+height = 65.822784
+
+[sub_resource type="GDScript" id="GDScript_hswio"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hmlq1"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ei5el")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jlmqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v3i3p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e5x6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_n5i3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2tjg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2tmqr")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_qut2a"]
+script/source = "extends AnimatedSprite2D
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_1i7ck"]
+script/source = "extends PointLight2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(1, 0.79)
+script = ExtResource("1_1q6hs")
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(1.375, -5.237342)
+shape = SubResource("RectangleShape2D_iaoh4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(1, 0.79)
+shape = SubResource("CapsuleShape2D_1q6hs")
+script = SubResource("GDScript_hswio")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -10.126586)
+sprite_frames = SubResource("SpriteFrames_hmlq1")
+animation = &"run"
+autoplay = "idle"
+flip_h = true
+script = SubResource("GDScript_qut2a")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1, 0.79)
+script = SubResource("GDScript_1i7ck")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1, 0.79)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(6.499998, -6.374996)
+scale = Vector2(1, 0.79)
+texture = ExtResource("5_e5x6o")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_jlmqp")
+volume_db = -4.0
+pitch_scale = 0.5

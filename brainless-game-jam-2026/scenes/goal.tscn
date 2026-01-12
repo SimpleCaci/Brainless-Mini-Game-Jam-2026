@@ -49,7 +49,7 @@ texture = ExtResource("2_w3gav")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -40)
 sprite_frames = SubResource("SpriteFrames_aqdrf")
-animation = &"open"
+animation = &"close"
 autoplay = "close"
 
 [node name="FarmhouseGoalClose" type="Sprite2D" parent="."]

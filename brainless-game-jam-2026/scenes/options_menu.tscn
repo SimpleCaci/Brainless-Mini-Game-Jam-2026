@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfy388iqkln0u"]
+
+[ext_resource type="Script" uid="uid://4d45g5v760h0" path="res://scenes/options_menu.gd" id="1_liyum"]
+[ext_resource type="Texture2D" uid="uid://t0nawrbsu7w6" path="res://assets/stuff/Start/bg.png" id="2_ijpji"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ijpji"]
+
+[sub_resource type="Theme" id="Theme_hm4m4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lfjc7"]
+texture = ExtResource("2_ijpji")
+
+[node name="options menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_liyum")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
+material = SubResource("CanvasItemMaterial_ijpji")
+position = Vector2(613, 340)
+scale = Vector2(4.667857, 5.507812)
+texture = ExtResource("2_ijpji")
+
+[node name="Panel" type="Panel" parent="."]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hm4m4")
+theme_override_styles/panel = SubResource("StyleBoxTexture_lfjc7")

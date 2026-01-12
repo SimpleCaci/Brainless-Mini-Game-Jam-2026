@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dnxk5nam62qyi"]
+[gd_scene load_steps=19 format=3 uid="uid://dnxk5nam62qyi"]
 
 [ext_resource type="Script" uid="uid://bspmcl7flvgoy" path="res://main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://t0nawrbsu7w6" path="res://assets/stuff/Start/bg.png" id="2_oa1go"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://f75eobqw7rsb" path="res://assets/stuff/Start/title_1.png" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://bo08jw1vlo0yw" path="res://assets/stuff/Start/title_2.png" id="7_tbmy8"]
 [ext_resource type="AudioStream" uid="uid://cr2osbasontvt" path="res://audio/background.wav" id="8_tbmy8"]
+[ext_resource type="Script" uid="uid://45dn8gbl4ck4" path="res://scripts/bg_sfx.gd" id="9_5dd4i"]
 [ext_resource type="AudioStream" uid="uid://bt35okvd0an7h" path="res://audio/click.wav" id="9_jk1qb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
@@ -149,6 +150,9 @@ text = "Programmed By SimpleCaci | Art by Pia"
 [node name="bgSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_tbmy8")
 autoplay = true
+max_distance = 133090.0
+panning_strength = 0.0
+script = ExtResource("9_5dd4i")
 
 [node name="hoverSFX" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(414, 333)

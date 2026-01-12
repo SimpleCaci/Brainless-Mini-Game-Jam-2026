@@ -13,10 +13,14 @@ func _ready() -> void:
 	if ball:
 		ball.shot_taken.connect(_on_win_game)
 
+	$AnimatedSprite2D.set_animation("open")
+	
 func _on_pickup_body_entered(body: Node) -> void:
 	if body.name == "dog":
 		body.call("arrived_at_goal")
 
 func _on_win_game(w: bool) -> void:
 	if w:
+		$AnimatedSprite2D.set_animation("open")
+	else:
 		$AnimatedSprite2D.set_animation("open")

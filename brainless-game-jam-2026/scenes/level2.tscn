@@ -1,0 +1,167 @@
+[gd_scene load_steps=19 format=3 uid="uid://cw1bn6lcafup"]
+
+[ext_resource type="Script" uid="uid://bspmcl7flvgoy" path="res://main_menu.gd" id="1_bo4dx"]
+[ext_resource type="Texture2D" uid="uid://t0nawrbsu7w6" path="res://assets/stuff/Start/bg.png" id="2_76toy"]
+[ext_resource type="Texture2D" uid="uid://5p1xswdgu8s8" path="res://assets/stuff/Start/start.png" id="3_8g4ke"]
+[ext_resource type="Texture2D" uid="uid://crnrpx341jchi" path="res://assets/stuff/Start/option.png" id="4_56gwk"]
+[ext_resource type="Texture2D" uid="uid://dr4f5n7vayl53" path="res://assets/stuff/Start/escape3.png" id="5_ve5ok"]
+[ext_resource type="Texture2D" uid="uid://f75eobqw7rsb" path="res://assets/stuff/Start/title_1.png" id="6_cleqw"]
+[ext_resource type="Texture2D" uid="uid://bo08jw1vlo0yw" path="res://assets/stuff/Start/title_2.png" id="7_wvb8j"]
+[ext_resource type="AudioStream" uid="uid://cr2osbasontvt" path="res://audio/background.wav" id="8_g8vcy"]
+[ext_resource type="Script" uid="uid://45dn8gbl4ck4" path="res://scripts/bg_sfx.gd" id="9_cqal4"]
+[ext_resource type="AudioStream" uid="uid://bt35okvd0an7h" path="res://audio/click.wav" id="10_o3sye"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
+texture = ExtResource("2_76toy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tbmy8"]
+texture = ExtResource("3_8g4ke")
+region_rect = Rect2(17.2919, 23.556782, 55.13269, 18.236195)
+modulate_color = Color(2.28, 2.234, 2.105, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ln24"]
+texture = ExtResource("3_8g4ke")
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+region_rect = Rect2(17, 24, 56, 18)
+modulate_color = Color(2.8123996, 2.8123996, 2.8123996, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jk1qb"]
+texture = ExtResource("4_56gwk")
+region_rect = Rect2(16.94013, 23.799757, 56.304634, 18.406965)
+modulate_color = Color(2.28, 2.234, 2.105, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtw2f"]
+texture = ExtResource("4_56gwk")
+region_rect = Rect2(17, 24, 56, 18)
+modulate_color = Color(2.812, 2.812, 2.812, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5dd4i"]
+texture = ExtResource("5_ve5ok")
+region_rect = Rect2(16.964876, 23.764194, 56.13295, 18.41383)
+modulate_color = Color(2.28, 2.234, 2.105, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oa1go"]
+texture = ExtResource("5_ve5ok")
+region_rect = Rect2(17, 24, 56, 18)
+modulate_color = Color(2.92, 2.92, 2.92, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jk1qb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_cleqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wvb8j")
+}],
+"loop": true,
+"name": &"Title",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 6.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bo4dx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1146.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wu84c")
+
+[node name="ui_buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.0
+offset_top = 9.0
+offset_right = 167.0
+offset_bottom = 383.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="startButton" type="Button" parent="ui_buttons"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_tbmy8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8ln24")
+text = "
+
+"
+
+[node name="Button2" type="Button" parent="ui_buttons"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rtw2f")
+text = " 
+
+"
+
+[node name="Button3" type="Button" parent="ui_buttons"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_5dd4i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_oa1go")
+text = "
+
+
+"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(672, 130)
+scale = Vector2(5.558511, 3.904908)
+sprite_frames = SubResource("SpriteFrames_jk1qb")
+animation = &"Title"
+autoplay = "Title"
+frame_progress = 0.31718457
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -22.0
+offset_right = 311.0
+offset_bottom = 1.0
+grow_vertical = 0
+text = "Programmed By SimpleCaci | Art by Pia"
+
+[node name="bgSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_g8vcy")
+autoplay = true
+max_distance = 133090.0
+panning_strength = 0.0
+script = ExtResource("9_cqal4")
+
+[node name="hoverSFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(414, 333)
+stream = ExtResource("10_o3sye")
+
+[node name="clickSFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(414, 333)
+stream = ExtResource("10_o3sye")
+
+[connection signal="pressed" from="ui_buttons/startButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ui_buttons/Button2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="ui_buttons/Button3" to="." method="_on_exit_pressed"]

@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
 
 		var spin = lerp(min_spin_speed, max_spin_speed, t)
 		rotation += (spin * delta) + wobble
+		rotation += 0.1
+		
 	else:
 		var target_angle := to_barn.angle() + point_up_offset
 

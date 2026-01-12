@@ -1,7 +1,7 @@
 extends TileMapLayer
 
-@export var width := 200
-@export var height := 200
+@export var width := 400
+@export var height := 400
 
 # Set these to your actual TileSet atlas coords for the two tiles.
 # If you used two separate tiles in an atlas, these are (x,y) positions in the atlas grid.

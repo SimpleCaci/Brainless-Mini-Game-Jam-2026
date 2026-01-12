@@ -1,53 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://mkaevujwhsf3"]
 
+[ext_resource type="Script" uid="uid://bq5rc8gdhqllb" path="res://scripts/top_ui.gd" id="1_gtssr"]
 [ext_resource type="PackedScene" uid="uid://df4ifvsh0rubb" path="res://scenes/compass.tscn" id="1_qgj0o"]
 
-[sub_resource type="GDScript" id="GDScript_d5x1h"]
-script/source = "extends CanvasLayer
-
-@export var ball_path: NodePath
-
-@onready var strokes_label: Label = $StrokesLabel
-@onready var speed_label: Label = $SpeedLabel
-
-var ball: Node
-
-func _ready() -> void:
-	await get_tree().process_frame   # lets the scene finish entering the tree
-	_bind_ball()
-
-func _bind_ball() -> void:
-	if ball_path.is_empty():
-		push_error(\"HUD: ball_path is empty.\")
-		return
-
-	ball = get_node_or_null(ball_path)
-	print(\"HUD: resolved ball =\", ball, \" path=\", ball_path)
-
-	if ball == null:
-		push_error(\"HUD: ball_path does not resolve: %s\" % str(ball_path))
-		return
-
-	# Godot 4 recommended: connect via signal properties if present
-	if ball.has_signal(\"shot_taken\"):
-		ball.shot_taken.connect(_on_shot_taken)
-	else:
-		push_error(\"HUD: missing signal shot_taken on %s\" % ball.name)
-
-	if ball.has_signal(\"speed_changed\"):
-		ball.speed_changed.connect(_on_speed_changed)
-	else:
-		push_error(\"HUD: missing signal speed_changed on %s\" % ball.name)
-
-func _on_shot_taken(strokes: int) -> void:
-	strokes_label.text = \"Strokes: %d\" % strokes
-
-func _on_speed_changed(speed: float) -> void:
-	speed_label.text = \"Speed: %.1f\" % speed
-"
-
 [node name="CanvasLayer" type="CanvasLayer"]
-script = SubResource("GDScript_d5x1h")
+script = ExtResource("1_gtssr")
 
 [node name="StrokesLabel" type="Label" parent="."]
 anchors_preset = 2
@@ -73,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "test"
 
-[node name="Label3" type="Label" parent="."]
+[node name="StateLabel" type="Label" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -84,6 +41,27 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "test3"
+
+[node name="ReadyLabel" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SettleBar" type="ProgressBar" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_right = 2.0
+offset_bottom = 27.0
+grow_horizontal = 2
 
 [node name="Button" type="Button" parent="."]
 anchors_preset = 1

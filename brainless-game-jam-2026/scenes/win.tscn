@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://djxveqwwmcxon"]
+[gd_scene load_steps=8 format=3 uid="uid://djxveqwwmcxon"]
 
 [ext_resource type="Texture2D" uid="uid://t0nawrbsu7w6" path="res://assets/stuff/Start/bg.png" id="1_r4oei"]
+[ext_resource type="Script" uid="uid://cvqgt5f80ha81" path="res://scenes/win.gd" id="1_tylv2"]
 [ext_resource type="Texture2D" uid="uid://6s0r24fg8sxk" path="res://assets/win_lose screen/win/winscreen2.png" id="2_iiocm"]
 [ext_resource type="Texture2D" uid="uid://brhr06s2le0uo" path="res://assets/win_lose screen/win/winscreen.png" id="3_yxbqr"]
+[ext_resource type="AudioStream" uid="uid://20v0sqadm5kj" path="res://audio/BeepBox-Song.wav" id="4_yxbqr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_826fv"]
 texture = ExtResource("1_r4oei")
@@ -33,6 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tylv2")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -62,3 +65,7 @@ position = Vector2(15, 13)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_r4oei")
 autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_yxbqr")
+autoplay = true
